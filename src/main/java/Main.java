@@ -108,7 +108,7 @@ public class Main {
         StudentDAO studentDAO1 = new StudentDAO();
         List<Student> productList = studentDAO1.getAll();
         productList.stream()
-                .filter(s -> s.getGender()==1 && s.getAddress().equals("Ha Noi"))
+                .filter(s -> s.getGender()==1 && s.getAddress().equals("Ha Noi")&& s.getGPA()>2.5)
                 .forEach(p -> System.out.println(p));
     }
     private static void option8(){
