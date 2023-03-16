@@ -96,6 +96,29 @@ public class Main {
         System.out.println(studentDAO.getById(id));
     }
 
+    public static void option6() {
+        StudentDAO studentDAO1 = new StudentDAO();
+        List<Student> productList = studentDAO1.getAll();
+        productList.stream()
+                .sorted((o1, o2) -> o1.compareTo(o2))
+                .forEach(p -> System.out.println(p));
+    }
+
+    public static void option7() {
+        StudentDAO studentDAO1 = new StudentDAO();
+        List<Student> productList = studentDAO1.getAll();
+        productList.stream()
+                .filter(s -> s.getGender()==1 && s.getAddress().equals("Ha Noi"))
+                .forEach(p -> System.out.println(p));
+    }
+    private static void option8(){
+        StudentDAO studentDAO = new StudentDAO();
+        List<Student> studentList = studentDAO.getAll();
+        studentList.stream()
+                .sorted((o1, o2) -> o1.getFullName().compareTo(o2.getFullName()))
+                .forEach(p -> System.out.println(p));
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int option = -1;
@@ -126,11 +149,13 @@ public class Main {
                     option5(in);
                     break;
                 case 6:
-                    //option6();
+                    option6();
                     break;
                 case 7:
+                    option7();
                     break;
                 case 8:
+                    option8();
                     break;
                 case 9:
                     break;
