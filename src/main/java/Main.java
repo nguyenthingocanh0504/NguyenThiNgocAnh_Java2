@@ -53,12 +53,48 @@ public class Main {
 
     private static void option3(Scanner in){
         StudentDAO studentDAO= new StudentDAO();
+        Student student=new Student();
         System.out.println("Nhập mã sinh viên muốn xóa: ");
         String maSV = in.nextLine();
-
+        student.setId(maSV);
         studentDAO.delete(maSV);
     }
+    private static void option4(Scanner in){
+        StudentDAO studentDAO = new StudentDAO();
+        Student p=new Student();
+        System.out.print("\tNhập mã sinh viên: ");
+        String id = in.nextLine();
+        p.setId(id);
+        System.out.print("\tNhập họ tên: ");
+        String name = in.nextLine();
+        p.setFullName(name);
+        System.out.print("\tNhập giới tính: ");
+        int gender=Integer.parseInt(in.nextLine());
+        p.setGender(gender);
+        System.out.print("\tNhập ngày sinh: ");
+        String dateOfBirth=in.nextLine();
+        p.setDateOfBirth(dateOfBirth);
+        System.out.print("\tNhập địa chỉ: ");
+        String address=in.nextLine();
+        p.setAddress(address);
+        System.out.print("\tNhập số điện thoại: ");
+        String phone = in.nextLine();
+        p.setPhone(phone);
+        System.out.print("\tNhập email: ");
+        String email=in.nextLine();
+        p.setEmail(email);
+        System.out.print("\tNhập điểm GPA: ");
+        Double GPA=Double.parseDouble(in.nextLine());
+        p.setGPA(GPA);
 
+        studentDAO.update(p,id);
+    }
+
+    public static void option5(Scanner in) {
+        System.out.println("Nhap id can tim:");
+        String id = in.nextLine();
+        System.out.println(studentDAO.getById(id));
+    }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -84,9 +120,10 @@ public class Main {
                     option3(in);
                     break;
                 case 4:
-                    //option4(in);
+                    option4(in);
                     break;
                 case 5:
+                    option5(in);
                     break;
                 case 6:
                     //option6();

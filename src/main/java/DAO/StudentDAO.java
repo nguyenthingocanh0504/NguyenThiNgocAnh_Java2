@@ -109,4 +109,28 @@ public class StudentDAO {
             e.printStackTrace();
         }
     }
+    public void update(Student student, String id) {
+        Student tmp = getById(id);
+        if (tmp == null) {
+            throw new RuntimeException("Sinh viên không tồn tại!");
+        }
+
+        final String sql = String.format("UPDATE `students` SET `full_name`='%s',`gender`='%d',`date_of_birth`='%s',`address`='%s',`phone`='%s',`email`='%s',`GPA`='%f' WHERE `id` = '%s'",
+                student.getFullName(), student.getGender(), student.getDateOfBirth(), student.getAddress(), student.getPhone(),student.getEmail(),student.getGPA(), id
+        );
+        try {
+            Connection conn = MyConnection.getConnection();
+            Statement stmt = conn.createStatement();
+            long rs = stmt.executeUpdate(sql);
+
+            if (rs == 0) {
+                System.out.println("Cập nhật thất bại");
+            }
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
